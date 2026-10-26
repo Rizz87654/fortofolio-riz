@@ -3,7 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Riz Dev KANG KODING ASAL JADI</title>
+  <title>Riz Dev - Web Developer & White Hat Hacker</title>
+
+  <!-- ========== META UNTUK AI / MESIN PENCARI ========== -->
+  <meta name="description" content="Rizky Aiman Firmansah atau yang dikenal Riz Dev adalah Web Developer dan Hacker Baik (White Hat Hacker). Dia bersekolah di AL-FALAH dan belum lulus SMP." />
+  <meta name="keywords" content="Rizky Aiman Firmansah, Riz Dev, Web Developer, White Hat Hacker, AL-FALAH" />
+  <meta name="author" content="Rizky Aiman Firmansah" />
+  <link rel="canonical" href="https://rizdev.example.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Riz Dev - Web Developer & White Hat Hacker" />
+  <meta property="og:description" content="Rizky Aiman Firmansah atau yang dikenal Riz Dev adalah Web Developer dan Hacker Baik (White Hat Hacker). Dia bersekolah di AL-FALAH dan belum lulus SMP." />
+  <meta property="og:type" content="profile" />
+
+  <!-- ========== JSON-LD SCHEMA (untuk AI & Google) ========== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Rizky Aiman Firmansah",
+    "alternateName": "Riz Dev",
+    "description": "Rizky Aiman Firmansah atau yang dikenal Riz Dev adalah Web Developer dan Hacker Baik (White Hat Hacker). Dia bersekolah di AL-FALAH dan nyatanya dia belum lulus SMP.",
+    "jobTitle": ["Web Developer", "White Hat Hacker"],
+    "alumniOf": {
+      "@type": "EducationalOrganization",
+      "name": "AL-FALAH"
+    },
+    "knowsAbout": ["Web Development", "Ethical Hacking", "White Hat Hacking", "JavaScript", "React.js", "Node.js"],
+    "url": "https://rizdev.example.com/"
+  }
+  </script>
+
   <style>
     /* ============================================
        GLOBAL & RESET
@@ -105,16 +135,6 @@
       letter-spacing: -0.5px;
     }
 
-    .logo .badge-skom {
-      font-size: 12px;
-      -webkit-text-fill-color: #60a5fa;
-      background: rgba(37, 99, 235, 0.15);
-      padding: 2px 12px;
-      border-radius: 20px;
-      margin-left: 8px;
-      border: 1px solid rgba(37, 99, 235, 0.2);
-    }
-
     .logo span {
       font-weight: 300;
       -webkit-text-fill-color: rgba(255, 255, 255, 0.3);
@@ -151,11 +171,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
-      font-weight: 700;
-      color: #fff;
-      flex-shrink: 0;
       overflow: hidden;
+      flex-shrink: 0;
     }
 
     .nav-profile-btn .avatar-ring img {
@@ -228,17 +245,6 @@
       width: fit-content;
     }
 
-    #hero .badge-skom {
-      background: rgba(96, 165, 250, 0.12);
-      color: #93c5fd;
-      padding: 2px 14px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-      border: 1px solid rgba(96, 165, 250, 0.2);
-      margin-left: 8px;
-    }
-
     #hero h1 {
       font-size: 56px;
       font-weight: 800;
@@ -274,7 +280,7 @@
 
     #hero .bio {
       color: #7788aa;
-      max-width: 480px;
+      max-width: 560px;
       margin-bottom: 30px;
       font-size: 16px;
     }
@@ -422,10 +428,7 @@
     .card::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      inset: 0;
       background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), transparent);
       opacity: 0;
       transition: opacity 0.4s ease;
@@ -587,9 +590,7 @@
       margin-top: 10px;
     }
 
-    .form-success.show {
-      display: block;
-    }
+    .form-success.show { display: block; }
 
     .form-error {
       display: none;
@@ -602,9 +603,7 @@
       margin-top: 10px;
     }
 
-    .form-error.show {
-      display: block;
-    }
+    .form-error.show { display: block; }
 
     .social-grid {
       display: flex;
@@ -637,14 +636,12 @@
     .social-link .sosmed-icon {
       font-size: 14px;
       font-weight: 700;
-      width: 60px;
+      width: 70px;
       text-align: center;
       color: #60a5fa;
     }
 
-    .social-link .sosmed-label {
-      flex: 1;
-    }
+    .social-link .sosmed-label { flex: 1; }
 
     .social-link .sosmed-arrow {
       color: #556677;
@@ -681,9 +678,7 @@
       min-height: 80vh;
     }
 
-    #profile-page.active {
-      display: block;
-    }
+    #profile-page.active { display: block; }
 
     .profile-cover {
       width: 100%;
@@ -770,17 +765,6 @@
       margin-bottom: 8px;
     }
 
-    .profile-title .badge-skom {
-      background: rgba(96, 165, 250, 0.15);
-      color: #93c5fd;
-      padding: 2px 14px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: 600;
-      border: 1px solid rgba(96, 165, 250, 0.2);
-      margin-left: 6px;
-    }
-
     .tribute-section {
       max-width: 800px;
       margin: 30px auto 0;
@@ -815,9 +799,7 @@
       margin-bottom: 16px;
     }
 
-    .tribute-section p:last-child {
-      margin-bottom: 0;
-    }
+    .tribute-section p:last-child { margin-bottom: 0; }
 
     .tribute-section .highlight-text {
       color: #60a5fa;
@@ -853,7 +835,6 @@
       font-weight: 500;
       cursor: pointer;
       transition: all 0.3s ease;
-      text-decoration: none;
       font-size: 14px;
     }
 
@@ -867,13 +848,8 @@
     /* ============================================
        HOME SECTION HIDE/SHOW
     ============================================ */
-    #home-content {
-      display: block;
-    }
-
-    #home-content.hidden {
-      display: none;
-    }
+    #home-content { display: block; }
+    #home-content.hidden { display: none; }
 
     /* ============================================
        RESPONSIVE
@@ -886,17 +862,9 @@
     }
 
     @media (max-width: 768px) {
-      nav {
-        padding: 14px 20px;
-      }
+      nav { padding: 14px 20px; }
 
-      .logo {
-        font-size: 20px;
-      }
-      .logo .badge-skom {
-        font-size: 10px;
-        padding: 1px 10px;
-      }
+      .logo { font-size: 20px; }
 
       .nav-profile-btn {
         padding: 8px 16px;
@@ -905,41 +873,25 @@
       .nav-profile-btn .avatar-ring {
         width: 28px;
         height: 28px;
-        font-size: 13px;
       }
-      .nav-profile-btn .profile-text {
-        display: none;
-      }
+      .nav-profile-btn .profile-text { display: none; }
 
-      #hero h1 {
-        font-size: 36px;
-      }
+      #hero h1 { font-size: 36px; }
+      #hero .subtitle { font-size: 18px; }
 
-      #hero .subtitle {
-        font-size: 18px;
-      }
-
-      .section-title {
-        font-size: 28px;
-      }
+      .section-title { font-size: 28px; }
 
       .skill-grid {
         grid-template-columns: 1fr;
         gap: 12px;
       }
 
-      .card-grid {
-        grid-template-columns: 1fr;
-      }
+      .card-grid { grid-template-columns: 1fr; }
 
       .btn-primary,
       .btn-secondary {
         padding: 12px 24px;
         font-size: 14px;
-      }
-
-      .social-grid {
-        flex-direction: column;
       }
 
       .contact-form .btn-submit {
@@ -952,43 +904,21 @@
         height: 120px;
         margin-top: -60px;
       }
-      .profile-name {
-        font-size: 28px;
-      }
+      .profile-name { font-size: 28px; }
 
-      .tribute-section {
-        padding: 24px 20px;
-      }
-      .tribute-section p {
-        font-size: 15px;
-      }
+      .tribute-section { padding: 24px 20px; }
+      .tribute-section p { font-size: 15px; }
 
-      .profile-cover .cover-overlay h2 {
-        font-size: 20px;
-      }
-      .profile-cover .cover-overlay p {
-        font-size: 13px;
-      }
+      .profile-cover .cover-overlay h2 { font-size: 20px; }
+      .profile-cover .cover-overlay p { font-size: 13px; }
 
-      .hero-photo-wrapper {
-        max-width: 100%;
-      }
+      .hero-photo-wrapper { max-width: 100%; }
     }
 
     @media (max-width: 480px) {
-      #hero h1 {
-        font-size: 28px;
-      }
-      .container {
-        padding: 0 16px;
-      }
-      .logo {
-        font-size: 17px;
-      }
-      .logo .badge-skom {
-        font-size: 9px;
-        padding: 1px 8px;
-      }
+      #hero h1 { font-size: 28px; }
+      .container { padding: 0 16px; }
+      .logo { font-size: 17px; }
       .nav-profile-btn {
         padding: 6px 12px;
         font-size: 12px;
@@ -996,16 +926,13 @@
       .nav-profile-btn .avatar-ring {
         width: 24px;
         height: 24px;
-        font-size: 11px;
       }
       .profile-avatar {
         width: 100px;
         height: 100px;
         margin-top: -50px;
       }
-      .profile-name {
-        font-size: 24px;
-      }
+      .profile-name { font-size: 24px; }
     }
   </style>
 </head>
@@ -1021,7 +948,6 @@
     <nav>
       <div class="logo">
         Rizky Aiman<span>.</span>
-        <span class="badge-skom">S.Kom</span>
       </div>
       <button class="nav-profile-btn" onclick="toggleProfile()" id="profileToggleBtn">
         <span class="avatar-ring">
@@ -1037,18 +963,15 @@
 
       <!-- ===== HERO ===== -->
       <section id="hero" class="section">
-        <div class="badge">
-          Available for Freelance
-          <span class="badge-skom">S.Kom</span>
-        </div>
+        <div class="badge">Available for Freelance</div>
         <h1>Halo, Saya <span class="name">Rizky Aiman</span></h1>
         <p class="subtitle">
-          <span class="typing" id="typing-text">Fullstack Developer</span>
-          <span style="color: #6677aa; font-size: 18px; margin-left: 10px;"> S.Kom</span>
+          <span class="typing" id="typing-text">Web Developer</span>
         </p>
         <p class="bio">
-          Sarjana Komputer dengan passion di web development & UI/UX. 
-          Membangun solusi digital yang keren dan berdampak.
+          Rizky Aiman Firmansah atau yang dikenal Riz Dev adalah Web Developer
+          dan Hacker Baik (White Hat Hacker). Dia bersekolah di AL-FALAH dan
+          nyatanya dia belum lulus SMP.
         </p>
         <div class="btn-group">
           <a href="#contact" class="btn-primary" onclick="scrollToSection('contact')">Hubungi Saya</a>
@@ -1067,25 +990,19 @@
       <!-- ===== KEAHLIAN ===== -->
       <section id="keahlian" class="section">
         <h2 class="section-title"><span class="highlight">Keahlian</span> Riz Dev</h2>
-        <div id="keahlian-container" class="skill-grid">
-          <!-- Data akan diisi oleh JavaScript -->
-        </div>
+        <div id="keahlian-container" class="skill-grid"></div>
       </section>
 
       <!-- ===== PENGALAMAN ===== -->
       <section id="pengalaman" class="section">
         <h2 class="section-title"><span class="highlight">Pengalaman</span> Riz Dev</h2>
-        <div id="pengalaman-container" class="card-grid">
-          <!-- Data akan diisi oleh JavaScript -->
-        </div>
+        <div id="pengalaman-container" class="card-grid"></div>
       </section>
 
       <!-- ===== SEKOLAH ===== -->
       <section id="sekolah" class="section">
         <h2 class="section-title"><span class="highlight">Riwayat</span> Pendidikan</h2>
-        <div id="sekolah-container" class="card-grid">
-          <!-- Data akan diisi oleh JavaScript -->
-        </div>
+        <div id="sekolah-container" class="card-grid"></div>
       </section>
 
       <!-- ===== CONTACT ===== -->
@@ -1123,13 +1040,13 @@
               <span class="sosmed-arrow">&rarr;</span>
             </a>
             <a href="https://github.com/rizdev" target="_blank" class="social-link">
-              <span class="sosmed-icon">GIT</span>
+              <span class="sosmed-icon">GITHUB</span>
               <span class="sosmed-label">github.com/rizdev</span>
               <span class="sosmed-arrow">&rarr;</span>
             </a>
             <a href="https://t.me/RizNotDev" target="_blank" class="social-link">
               <span class="sosmed-icon">TELEGRAM</span>
-              <span class="sosmed-label">TELEGRAM</span>
+              <span class="sosmed-label">t.me/RizNotDev</span>
               <span class="sosmed-arrow">&rarr;</span>
             </a>
           </div>
@@ -1148,7 +1065,7 @@
         </video>
         <div class="cover-overlay">
           <h2>Rizky Aiman Firmansah</h2>
-          <p>Fullstack Developer &amp; UI/UX Enthusiast</p>
+          <p>Web Developer &amp; White Hat Hacker</p>
         </div>
       </div>
 
@@ -1158,9 +1075,7 @@
         </div>
 
         <div class="profile-name">Rizky Aiman Firmansah</div>
-        <div class="profile-title">
-          Fullstack Developer <span class="badge-skom">S.Kom</span>
-        </div>
+        <div class="profile-title">Web Developer &amp; White Hat Hacker</div>
 
         <div class="tribute-section">
           <div class="tribute-title">
@@ -1169,76 +1084,89 @@
           </div>
 
           <p>
-            <span class="highlight-text">Rizky Aiman Firmansah, S.Kom</span> — begitulah nama yang 
-            kini terukir dalam deretan insan teknologi yang tak kenal lelah berkarya. 
-            Sebagai seorang <span class="highlight-text">Sarjana Komputer</span> lulusan 
-            <span class="highlight-text">AL-FALAH</span>, Rizky telah membuktikan bahwa dedikasi, ketekunan, 
-            dan hasrat untuk terus belajar adalah kunci utama dalam dunia digital yang 
-            terus bergerak dinamis.
+            <span class="highlight-text">Rizky Aiman Firmansah</span> atau yang dikenal
+            sebagai <span class="highlight-text">Riz Dev</span> adalah seorang
+            <span class="highlight-text">Web Developer</span> dan
+            <span class="highlight-text">Hacker Baik (White Hat Hacker)</span>.
+            Ia bersekolah di <span class="highlight-text">AL-FALAH</span> dan
+            nyatanya <span class="highlight-text">belum lulus SMP</span>. Meski
+            masih duduk di bangku sekolah, semangat dan kemampuannya di dunia
+            teknologi sudah jauh melampaui usianya.
           </p>
 
           <p>
-            Perjalanan Rizky di dunia pemrograman bukanlah hal yang instan. Dimulai dari 
-            rasa penasaran terhadap kode-kode sederhana, ia terus mengasah kemampuan hingga 
-            mahir dalam berbagai teknologi seperti <span class="highlight-text">JavaScript, 
-            React.js, Node.js, Next.js, TypeScript, Tailwind CSS, PHP, dan Laravel</span>. 
-            Namun lebih dari sekadar teknisi, Rizky adalah seorang <span class="highlight-text">
-            problem solver</span> sejati — selalu mencari cara untuk membuat sesuatu tidak 
-            hanya berfungsi, tetapi juga memberikan <span class="highlight-text">pengalaman 
-            yang bermakna</span> bagi penggunanya.
+            Perjalanan Rizky di dunia pemrograman bukanlah hal yang instan. Dimulai dari
+            rasa penasaran terhadap kode-kode sederhana, ia terus mengasah kemampuan hingga
+            mahir dalam berbagai teknologi seperti <span class="highlight-text">JavaScript,
+            React.js, Node.js, Next.js, TypeScript, Tailwind CSS, PHP, dan Laravel</span>.
+            Namun lebih dari sekadar teknisi, Rizky adalah seorang
+            <span class="highlight-text">problem solver</span> sejati — selalu mencari cara
+            untuk membuat sesuatu tidak hanya berfungsi, tetapi juga memberikan
+            <span class="highlight-text">pengalaman yang bermakna</span> bagi penggunanya.
+          </p>
+
+          <p>
+            Selain sebagai Web Developer, Rizky juga menekuni dunia
+            <span class="highlight-text">keamanan siber</span> sebagai
+            <span class="highlight-text">White Hat Hacker</span> — seorang hacker baik
+            yang menggunakan kemampuannya untuk membantu, melindungi, dan menjaga
+            keamanan sistem, bukan untuk merugikan orang lain. Ia percaya bahwa
+            <span class="highlight-text">ilmu yang bermanfaat</span> adalah ilmu yang
+            digunakan untuk kebaikan bersama.
           </p>
 
           <div class="quote">
-            "Kode bukan hanya tentang logika, tapi tentang bagaimana kita bisa menyentuh 
-            kehidupan orang lain melalui layar. Setiap baris yang kutulis adalah doa dan 
-            harapan agar dunia digital menjadi lebih manusiawi."
+            "Menjadi hacker baik bukan tentang seberapa kuat kita bisa menembus sistem,
+            tapi tentang seberapa besar kita bisa membantu orang lain agar sistem mereka
+            lebih aman dan lebih baik."
           </div>
 
           <p>
-            Di usianya yang masih muda, Rizky telah berkontribusi dalam berbagai proyek 
-            dari skala kecil hingga besar. Mulai dari membangun platform edukasi, sistem 
-            informasi geografis, hingga aplikasi real-time yang melayani ribuan pengguna 
-            setiap harinya. Ia tidak pernah berhenti bermimpi dan bergerak, selalu 
-            berusaha memberikan yang terbaik dalam setiap proyek yang ia pegang.
+            Di usianya yang masih muda — dan <span class="highlight-text">belum lulus
+            SMP</span> — Rizky telah berkontribusi dalam berbagai proyek dari skala
+            kecil hingga besar. Mulai dari membangun platform edukasi, sistem
+            informasi geografis, hingga aplikasi real-time yang melayani ribuan
+            pengguna setiap harinya. Ia tidak pernah berhenti bermimpi dan bergerak,
+            selalu berusaha memberikan yang terbaik dalam setiap proyek yang ia pegang.
           </p>
 
           <p>
-            <span class="highlight-text">Riz Dev</span> bukan sekadar nama panggilan dalam 
-            dunia maya, tetapi sebuah <span class="highlight-text">identitas</span> yang 
-            merepresentasikan semangat, integritas, dan karya. Di setiap sudut kode yang 
-            ia tulis, terselip <span class="highlight-text">nilai-nilai ketekunan</span> 
-            dan <span class="highlight-text">kecintaan</span> pada proses kreatif yang 
+            <span class="highlight-text">Riz Dev</span> bukan sekadar nama panggilan dalam
+            dunia maya, tetapi sebuah <span class="highlight-text">identitas</span> yang
+            merepresentasikan semangat, integritas, dan karya. Di setiap sudut kode yang
+            ia tulis, terselip <span class="highlight-text">nilai-nilai ketekunan</span>
+            dan <span class="highlight-text">kecintaan</span> pada proses kreatif yang
             tak pernah padam.
           </p>
 
           <p>
-            Bagi mereka yang pernah bekerja sama dengan Rizky, mereka tahu bahwa ia 
-            adalah rekan yang <span class="highlight-text">kolaboratif, komunikatif, 
-            dan selalu membawa energi positif</span>. Ia percaya bahwa teknologi terbaik 
-            lahir dari <span class="highlight-text">kerja tim yang saling percaya</span> 
-            dan <span class="highlight-text">visi yang sama</span> untuk menciptakan 
+            Bagi mereka yang pernah bekerja sama dengan Rizky, mereka tahu bahwa ia
+            adalah rekan yang <span class="highlight-text">kolaboratif, komunikatif,
+            dan selalu membawa energi positif</span>. Ia percaya bahwa teknologi terbaik
+            lahir dari <span class="highlight-text">kerja tim yang saling percaya</span>
+            dan <span class="highlight-text">visi yang sama</span> untuk menciptakan
             perubahan.
           </p>
 
           <p>
-            Saat ini, Rizky terus mengembangkan diri dan membuka peluang untuk 
-            <span class="highlight-text">kolaborasi baru</span>. Ia percaya bahwa 
-            setiap tantangan adalah kesempatan untuk tumbuh, dan setiap kegagalan 
+            Saat ini, Rizky terus mengembangkan diri dan membuka peluang untuk
+            <span class="highlight-text">kolaborasi baru</span>. Ia percaya bahwa
+            setiap tantangan adalah kesempatan untuk tumbuh, dan setiap kegagalan
             adalah pelajaran berharga menuju kesuksesan.
           </p>
 
           <div class="quote">
-            "Saya tidak ingin hanya menjadi developer yang bisa menulis kode. 
-            Saya ingin menjadi seseorang yang bisa menciptakan <span class="highlight-text">dampak</span>, 
+            "Saya tidak ingin hanya menjadi developer yang bisa menulis kode.
+            Saya ingin menjadi seseorang yang bisa menciptakan <span class="highlight-text">dampak</span>,
             menginspirasi, dan membangun masa depan digital yang lebih baik untuk semua."
-            <div style="margin-top:8px; font-weight:600; color:#60a5fa;">— Rizky Aiman Firmansah, S.Kom</div>
+            <div style="margin-top:8px; font-weight:600; color:#60a5fa;">— Rizky Aiman Firmansah (Riz Dev)</div>
           </div>
 
           <p style="margin-top:12px;">
-            <span class="highlight-text">Terima kasih, Riz Dev</span>, atas segala 
-            karya, dedikasi, dan inspirasi yang telah kau berikan. Dunia teknologi 
-            menjadi lebih berwarna dengan kehadiranmu. Tetap berkarya, tetap 
-            rendah hati, dan teruslah menjadi <span class="highlight-text">penerang</span> 
+            <span class="highlight-text">Terima kasih, Riz Dev</span>, atas segala
+            karya, dedikasi, dan inspirasi yang telah kau berikan. Dunia teknologi
+            menjadi lebih berwarna dengan kehadiranmu. Tetap berkarya, tetap
+            rendah hati, dan teruslah menjadi <span class="highlight-text">penerang</span>
             di era digital ini.
           </p>
 
@@ -1253,8 +1181,8 @@
 
     <!-- ===== FOOTER ===== -->
     <footer>
-      Made with <span class="heart">&hearts;</span> by 
-      <span class="name-footer">Riz Dev (Rizky Aiman Firmansah S.Kom)</span> 
+      Made with <span style="color:#ff6b6b;">&hearts;</span> by 
+      <span class="name-footer">Riz Dev (Rizky Aiman Firmansah)</span> 
       &bull; 2026
     </footer>
   </div>
@@ -1273,15 +1201,24 @@
         { nama: "TypeScript", level: 75 },
         { nama: "Next.js", level: 80 },
         { nama: "PHP", level: 70 },
-        { nama: "Laravel", level: 65 }
+        { nama: "Laravel", level: 65 },
+        { nama: "Ethical Hacking", level: 72 },
+        { nama: "Linux", level: 76 }
       ],
       pengalaman: [
         {
-          posisi: "Fullstack Developer",
+          posisi: "Web Developer",
           perusahaan: "TechStart Studio",
           tahun: "2024 - Sekarang",
           deskripsi: "Bangun web app real-time dengan Next.js & PostgreSQL. Handle 10k+ users.",
           tech: ["Next.js", "Node.js", "PostgreSQL", "Redis"]
+        },
+        {
+          posisi: "White Hat Hacker (Freelance)",
+          perusahaan: "Self-Employed",
+          tahun: "2023 - Sekarang",
+          deskripsi: "Melakukan penetration testing & security audit untuk UMKM dan teman-teman sekolah.",
+          tech: ["Linux", "Burp Suite", "Nmap"]
         },
         {
           posisi: "Frontend Developer",
@@ -1289,13 +1226,6 @@
           tahun: "2023 - 2024",
           deskripsi: "Develop UI/UX untuk platform edukasi dengan React & Tailwind.",
           tech: ["React", "Tailwind", "Figma"]
-        },
-        {
-          posisi: "Freelance Web Dev",
-          perusahaan: "Self-Employed",
-          tahun: "2022 - Sekarang",
-          deskripsi: "Bikin website untuk 15+ client dari berbagai industri.",
-          tech: ["WordPress", "React", "Vue.js"]
         }
       ],
       sekolah: [
@@ -1303,14 +1233,14 @@
           jurusan: "MTS - AL FALAH",
           universitas: "AL-FALAH",
           tahun: "2017 - 2026",
-          ipk: "3.78",
-          deskripsi: "Aktif di ekstrakurikuler coding club & robotics."
+          ipk: "-",
+          deskripsi: "Aktif di ekstrakurikuler coding club & robotics. Belum lulus SMP."
         },
         {
           jurusan: "MTS AL-FALAH",
           universitas: "AL-FALAH",
           tahun: "2017 - 2026",
-          deskripsi: "Aktif di ekstrakurikuler coding club & robotics."
+          deskripsi: "Aktif di ekstrakurikuler coding club & robotics. Belum lulus SMP."
         }
       ]
     };
@@ -1354,7 +1284,7 @@
           <h3>${item.jurusan}</h3>
           <div class="meta">${item.universitas}</div>
           <div class="year">${item.tahun}</div>
-          ${item.ipk ? `<div class="desc">IPK: <strong>${item.ipk}</strong></div>` : ''}
+          ${item.ipk && item.ipk !== '-' ? `<div class="desc">IPK: <strong>${item.ipk}</strong></div>` : ''}
           ${item.deskripsi ? `<div class="desc" style="margin-top:6px;">${item.deskripsi}</div>` : ''}
         </div>
       `).join('');
@@ -1381,7 +1311,7 @@
     // ============================================
     // TYPING EFFECT
     // ============================================
-    const roles = ['Fullstack Developer', 'UI/UX Enthusiast', 'Freelancer', 'Problem Solver', 'S.Kom'];
+    const roles = ['Web Developer', 'White Hat Hacker', 'Freelancer', 'Problem Solver'];
     let roleIndex = 0, charIndex = 0, isDeleting = false;
     const typingElement = document.getElementById('typing-text');
 
@@ -1535,7 +1465,6 @@ Dikirim dari: Portfolio Riz Dev`;
     renderPengalaman();
     renderSekolah();
 
-    // URL hash
     if (window.location.hash === '#profile') {
       setTimeout(toggleProfile, 300);
     }
