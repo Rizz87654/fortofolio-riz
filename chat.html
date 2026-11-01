@@ -63,7 +63,7 @@
     .message-box.ai { background: #a78bfa; align-self: flex-start; } /* Warna AI */
     
     .msg-name { font-weight: 800; font-size: 12px; margin-bottom: 4px; color: #333; text-transform: uppercase; }
-    .msg-text { font-weight: 600; font-size: 15px; line-height: 1.4; }
+    .msg-text { font-weight: 600; font-size: 15px; line-height: 1.4; white-space: pre-wrap; }
 
     /* Indikator AI Mengetik */
     .typing-indicator {
@@ -143,7 +143,6 @@
           <label for="file-upload" class="file-label">📎</label>
           <input type="file" id="file-upload" accept="image/*,video/*" onchange="uploadFile(this)" />
 
-          <!-- Placeholder diubah untuk mengingatkan user -->
           <input type="text" id="chat-input" placeholder="Ketik pesan atau '@ai [tanya]'..." autocomplete="off" onkeypress="handleKeyPress(event)" />
           
           <button class="btn-send" onclick="sendMessage()" title="Kirim">
@@ -165,10 +164,9 @@
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1oaWpsY3N4b2dmZm9ycmllbmNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM1MDA3MjAsImV4cCI6MjEwOTA3NjcyMH0.WRDyMXiKEXaJs652tXvb3T21YfDL7tN4tRUQej6sSCk';
     
     // ====================================================
-    // 2. KONFIGURASI MISTRAL AI (GANTI API KEY DI BAWAH)
+    // 2. KONFIGURASI AI SANSEKAI (TANPA API KEY)
     // ====================================================
-    const MISTRAL_API_KEY = 'mstrl_GRASB3k537Bggp3qIje7LC2NxzKrjtM8_18XxUQ'; 
-    const MISTRAL_API_URL = 'https://api.mistral.ai/v1/chat/completions';
+    const SANSEKAI_API_URL = 'https://api.sansekai.my.id/api/ai/chatgpt';
 
     let supabaseClient = null;
     let currentUser = null;
@@ -230,15 +228,13 @@
       // Kirim pesan user ke database
       await supabaseClient.from('messages').insert([{ username: currentUser, content: text }]);
 
-      // Cek apakah pesan mengandung tag @ai (contoh: "@ai 1+1" atau "halo @ai")
+      // Cek apakah pesan mengandung tag @ai
       const lowerText = text.toLowerCase();
       if (lowerText.includes('@ai')) {
-        // Ambil prompt dengan menghapus tag @ai
         const prompt = text.replace(/@ai/gi, '').trim();
         if (prompt.length > 0) {
-          askMistralAI(prompt);
+          askSansekaiAI(prompt);
         } else {
-          // Jika hanya ketik "@ai" tanpa pertanyaan
           await supabaseClient.from('messages').insert([{ 
             username: 'Rizdev AI', 
             content: 'Halo! Ada yang bisa saya bantu? Silakan ketik pertanyaan Anda setelah tag @ai. Contoh: @ai jelaskan apa itu hacking' 
@@ -248,9 +244,9 @@
     }
 
     // ==========================================
-    // FUNGSI MISTRAL AI
+    // FUNGSI AI SANSEKAI (TANPA API KEY)
     // ==========================================
-    async function askMistralAI(prompt) {
+    async function askSansekaiAI(prompt) {
       if (isAiResponding) return;
       isAiResponding = true;
 
@@ -267,49 +263,31 @@
       container.appendChild(loadingDiv);
       scrollToBottom();
 
-      // Cek API Key
-      if (MISTRAL_API_KEY === 'mstrl_GRASB3k537Bggp3qIje7LC2NxzKrjtM8_18XxUQ' || !MISTRAL_API_KEY) {
-        document.getElementById(loadingId).remove();
-        await supabaseClient.from('messages').insert([{ 
-          username: 'Rizdev AI', 
-          content: '⚠️ Maaf, API Key Mistral belum diatur oleh Admin. Silakan buka file chat.html dan isi API Key.' 
-        }]);
-        isAiResponding = false;
-        return;
-      }
-
       try {
-        // Tembak API Mistral
-        const response = await fetch(MISTRAL_API_URL, {
-          method: 'POST',
+        // Tembak API Sansekai
+        const response = await fetch(`${SANSEKAI_API_URL}?text=${encodeURIComponent(prompt)}`, {
+          method: 'GET',
           headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${MISTRAL_API_KEY}`
-          },
-          body: JSON.stringify({
-            model: 'mistral-tiny', // Model tercepat & gratis
-            messages: [
-              { 
-                role: 'system', 
-                content: 'Kamu adalah Rizdev AI, asisten virtual di portofolio RizDev. Jawab dengan ramah, singkat, dan pakai bahasa Indonesia santai.' 
-              },
-              { role: 'user', content: prompt }
-            ],
-            temperature: 0.7,
-            max_tokens: 500
-          })
+            'Accept': 'application/json'
+          }
         });
+
+        if (!response.ok) throw new Error('Server AI sedang sibuk atau error.');
+
+        const data = await response.json();
+        
+        // Cek berbagai kemungkinan format respons dari Sansekai
+        let aiReply = data.result || data.message || data.response || data.data;
+        
+        // Jika masih berupa objek, ubah ke string
+        if (typeof aiReply === 'object') {
+          aiReply = JSON.stringify(aiReply);
+        }
+
+        if (!aiReply) throw new Error('Format balasan AI tidak dikenali.');
 
         // Hapus indikator loading
         document.getElementById(loadingId).remove();
-
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.message || 'Gagal menghubungi server AI');
-        }
-
-        const data = await response.json();
-        const aiReply = data.choices[0].message.content;
 
         // Kirim balasan AI ke database chat
         await supabaseClient.from('messages').insert([{ 
@@ -378,7 +356,6 @@
     function appendMessage(msg) {
       const container = document.getElementById('chat-messages');
       
-      // Jangan tampilkan pesan kosong
       if (!msg.content) return;
 
       const div = document.createElement('div');
@@ -416,7 +393,6 @@
       if (!supabaseClient) return;
       supabaseClient.channel('public:messages')
         .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, payload => {
-          // Jika pesan yang masuk adalah dari AI atau user lain, hapus indikator loading
           if (payload.new.username === 'Rizdev AI') {
              const loaders = document.querySelectorAll('.message-box.ai .typing-indicator');
              loaders.forEach(l => l.parentElement.remove());
