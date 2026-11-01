@@ -8,71 +8,140 @@
   
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    
     body {
       font-family: 'Space Grotesk', sans-serif;
       background-color: #f4f4f0;
-      /* Pola titik-titik Neo Brutalism */
       background-image: radial-gradient(#000 1.5px, transparent 1.5px);
       background-size: 25px 25px;
-      color: #000; height: 100vh; display: flex; flex-direction: column;
+      color: #000; 
+      height: 100vh; 
+      height: 100dvh; /* Untuk layar HP modern */
+      display: flex; 
+      flex-direction: column;
       overflow: hidden;
     }
 
     .chat-container { 
-      display: flex; flex-direction: column; height: 100%; 
-      max-width: 800px; margin: 0 auto; width: 100%; padding: 15px; 
+      display: flex; 
+      flex-direction: column; 
+      height: 100%; 
+      max-width: 800px; 
+      margin: 0 auto; 
+      width: 100%; 
+      padding: 15px; 
     }
 
     /* Navbar Chat */
     .chat-nav {
-      display: flex; justify-content: space-between; align-items: center;
-      background: #00e5ff; border: 3px solid #000; border-radius: 12px;
-      padding: 15px; box-shadow: 4px 4px 0px #000; margin-bottom: 15px; z-index: 10;
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center;
+      background: #00e5ff; 
+      border: 3px solid #000; 
+      border-radius: 12px;
+      padding: 15px; 
+      box-shadow: 4px 4px 0px #000; 
+      margin-bottom: 15px; 
+      z-index: 10;
     }
     .chat-nav h2 { font-size: 22px; font-weight: 800; text-transform: uppercase; }
     .back-btn {
-      background: #ff7b9c; border: 3px solid #000; padding: 8px 16px; border-radius: 8px;
-      font-weight: 800; font-size: 14px; text-decoration: none; color: #000; 
-      box-shadow: 3px 3px 0px #000; transition: all 0.2s ease;
-      display: flex; align-items: center; gap: 5px;
+      background: #ff7b9c; 
+      border: 3px solid #000; 
+      padding: 8px 16px; 
+      border-radius: 8px;
+      font-weight: 800; 
+      font-size: 14px; 
+      text-decoration: none; 
+      color: #000; 
+      box-shadow: 3px 3px 0px #000; 
+      transition: all 0.2s ease;
+      display: flex; 
+      align-items: center; 
+      gap: 5px;
+      cursor: pointer;
     }
     .back-btn:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0px #000; }
 
-    /* Login Box (Muncul Pertama) */
+    /* Login Box */
     #login-box {
-      background: #fff; border: 4px solid #000; border-radius: 20px;
-      padding: 30px; box-shadow: 8px 8px 0px #000; text-align: center;
-      margin: auto; max-width: 400px; width: 100%;
+      background: #fff; 
+      border: 4px solid #000; 
+      border-radius: 20px;
+      padding: 30px; 
+      box-shadow: 8px 8px 0px #000; 
+      text-align: center;
+      margin: auto; 
+      max-width: 400px; 
+      width: 100%;
+      position: relative;
+      z-index: 5; /* Memastikan kotak ada di depan */
     }
     #login-box h3 { font-size: 28px; font-weight: 800; margin-bottom: 10px; text-transform: uppercase; }
     #login-box p { font-size: 15px; font-weight: 600; margin-bottom: 25px; line-height: 1.5; }
-    #login-box input {
-      width: 100%; padding: 15px; border: 3px solid #000; border-radius: 10px;
-      font-family: inherit; font-weight: 700; font-size: 16px; margin-bottom: 20px; 
-      outline: none; box-shadow: 3px 3px 0px #000;
-    }
-    #login-box input:focus { transform: translate(-2px, -2px); box-shadow: 5px 5px 0px #000; }
     
-    #login-box button {
-      width: 100%; padding: 16px; background: #ffe600; border: 3px solid #000;
-      border-radius: 10px; font-family: inherit; font-weight: 800; font-size: 18px;
-      cursor: pointer; box-shadow: 4px 4px 0px #000; text-transform: uppercase;
-      transition: all 0.2s ease;
+    #username-input {
+      width: 100%; 
+      padding: 15px; 
+      border: 3px solid #000; 
+      border-radius: 10px;
+      font-family: inherit; 
+      font-weight: 700; 
+      font-size: 16px; 
+      margin-bottom: 20px; 
+      outline: none; 
+      box-shadow: 3px 3px 0px #000;
+      position: relative;
+      z-index: 6;
     }
-    #login-box button:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #000; background: #fff; }
-    #login-box button:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #000; }
+    #username-input:focus { transform: translate(-2px, -2px); box-shadow: 5px 5px 0px #000; }
+    
+    #btn-join {
+      width: 100%; 
+      padding: 16px; 
+      background: #ffe600; 
+      border: 3px solid #000;
+      border-radius: 10px; 
+      font-family: inherit; 
+      font-weight: 800; 
+      font-size: 18px;
+      cursor: pointer; 
+      box-shadow: 4px 4px 0px #000; 
+      text-transform: uppercase;
+      transition: all 0.2s ease;
+      position: relative;
+      z-index: 6;
+      /* Memastikan tombol bisa diklik */
+      pointer-events: auto;
+    }
+    #btn-join:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #000; background: #fff; }
+    #btn-join:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #000; }
 
-    /* Area Chat (Sembunyi Dulu) */
+    /* Area Chat */
     #chat-area { display: none; flex-direction: column; flex: 1; overflow: hidden; }
     
     .chat-messages {
-      flex: 1; overflow-y: auto; padding: 15px; background: #fff;
-      border: 3px solid #000; border-radius: 12px; box-shadow: 4px 4px 0px #000;
-      margin-bottom: 15px; display: flex; flex-direction: column; gap: 12px;
+      flex: 1; 
+      overflow-y: auto; 
+      padding: 15px; 
+      background: #fff;
+      border: 3px solid #000; 
+      border-radius: 12px; 
+      box-shadow: 4px 4px 0px #000;
+      margin-bottom: 15px; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 12px;
     }
     .message-box {
-      background: #f4f4f0; padding: 12px 16px; border: 2px solid #000; border-radius: 8px;
-      max-width: 85%; align-self: flex-start; box-shadow: 2px 2px 0px #000;
+      background: #f4f4f0; 
+      padding: 12px 16px; 
+      border: 2px solid #000; 
+      border-radius: 8px;
+      max-width: 85%; 
+      align-self: flex-start; 
+      box-shadow: 2px 2px 0px #000;
       word-wrap: break-word;
     }
     .message-box.mine { background: #00e5ff; align-self: flex-end; }
@@ -107,8 +176,9 @@
     <div id="login-box">
       <h3>Masuk Chat</h3>
       <p>Masukkan username Anda untuk bergabung ke dalam ruang global chat demi keamanan bersama.</p>
-      <input type="text" id="username-input" placeholder="@UsernameKamu" maxlength="20" />
-      <button onclick="joinChat()">Masuk Chat</button>
+      <input type="text" id="username-input" placeholder="@UsernameKamu" maxlength="20" autocomplete="off" />
+      <!-- Tombol menggunakan ID agar mudah dipanggil -->
+      <button id="btn-join" type="button">Masuk Chat</button>
     </div>
 
     <!-- Ruang Chat -->
@@ -117,70 +187,94 @@
         <!-- Pesan akan muncul di sini -->
       </div>
       <div class="chat-input-area">
-        <input type="text" id="chat-input" placeholder="Ketik pesan..." onkeypress="handleKeyPress(event)" />
-        <button onclick="sendMessage()">Kirim</button>
+        <input type="text" id="chat-input" placeholder="Ketik pesan..." autocomplete="off" onkeypress="handleKeyPress(event)" />
+        <button type="button" onclick="sendMessage()">Kirim</button>
       </div>
     </div>
   </div>
 
-  <!-- Script Supabase Versi 2 -->
+  <!-- Load Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
   <script>
     // ====================================================
     // ⚠️ GANTI DENGAN URL DAN ANON KEY SUPABASE ANDA ⚠️
     // ====================================================
-    const SUPABASE_URL = 'https://mhijlcsxogfforriencs.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1oaWpsY3N4b2dmZm9ycmllbmNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM1MDA3MjAsImV4cCI6MjEwOTA3NjcyMH0.WRDyMXiKEXaJs652tXvb3T21YfDL7tN4tRUQej6sSCk';
-';
+    const SUPABASE_URL = 'URL_SUPABASE_ANDA_DI_SINI';
+    const SUPABASE_ANON_KEY = 'ANON_KEY_SUPABASE_ANDA_DI_SINI';
     
-    // Inisialisasi Supabase (Menggunakan window.supabase untuk versi 2)
-    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    
+    let supabaseClient = null;
     let currentUser = null;
 
-    // Fungsi Masuk Chat
-    function joinChat() {
-      const input = document.getElementById('username-input');
-      const username = input.value.trim();
-
-      // Cek apakah URL Supabase sudah diganti
-      if (SUPABASE_URL === 'https://mhijlcsxogfforriencs.supabase.co') {
-        alert('⚠️ Anda belum mengatur URL dan Key Supabase di dalam file chat.html! Silakan buka kodenya dan ganti bagian SUPABASE_URL dan SUPABASE_ANON_KEY.');
-        return;
+    // Cek apakah library Supabase berhasil dimuat
+    if (window.supabase) {
+      // Hanya inisialisasi jika URL sudah diganti (tidak sama dengan placeholder)
+      if (SUPABASE_URL !== 'https://mhijlcsxogfforriencs.supabase.co') {
+        supabaseClient = window.supabase.createClient(SUPABASE_URL, eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1oaWpsY3N4b2dmZm9ycmllbmNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM1MDA3MjAsImV4cCI6MjEwOTA3NjcyMH0.WRDyMXiKEXaJs652tXvb3T21YfDL7tN4tRUQej6sSCk';
+);
       }
-
-      if (username.length < 3) {
-        alert('Username minimal 3 karakter!');
-        return;
-      }
-
-      currentUser = username;
-      document.getElementById('login-box').style.display = 'none';
-      document.getElementById('chat-area').style.display = 'flex';
-      
-      loadMessages();
-      subscribeToChat();
+    } else {
+      console.error("Library Supabase gagal dimuat. Periksa koneksi internet.");
     }
+
+    // Pasang Event Listener ke tombol saat halaman selesai dimuat
+    document.addEventListener("DOMContentLoaded", () => {
+      const joinBtn = document.getElementById('btn-join');
+      
+      joinBtn.addEventListener('click', () => {
+        // 1. Cek apakah library dimuat
+        if (!window.supabase) {
+          alert('Error: Library Supabase gagal dimuat. Pastikan Anda terhubung ke internet.');
+          return;
+        }
+
+        // 2. Cek apakah URL sudah diganti
+        if (SUPABASE_URL === 'https://mhijlcsxogfforriencs.supabase.co' || !supabaseClient) {
+          alert('⚠️ Anda belum mengatur URL dan Key Supabase di dalam file chat.html!\n\nBuka kode chat.html, cari bagian SUPABASE_URL, lalu ganti dengan link dari dashboard Supabase Anda.');
+          return;
+        }
+
+        // 3. Cek Username
+        const input = document.getElementById('username-input');
+        const username = input.value.trim();
+
+        if (username.length < 3) {
+          alert('Username minimal 3 karakter!');
+          return;
+        }
+
+        // 4. Masuk ke Chat
+        currentUser = username;
+        document.getElementById('login-box').style.display = 'none';
+        document.getElementById('chat-area').style.display = 'flex';
+        
+        // Muat pesan dan dengarkan pesan baru
+        loadMessages();
+        subscribeToChat();
+      });
+    });
 
     // Fungsi Ambil Pesan Lama
     async function loadMessages() {
-      const { data, error } = await supabaseClient
-        .from('messages')
-        .select('*')
-        .order('created_at', { ascending: true })
-        .limit(50);
-
-      if (error) {
-        console.error('Error fetching messages:', error);
-        alert('Gagal memuat pesan: ' + error.message);
-        return;
-      }
-
-      const messagesContainer = document.getElementById('chat-messages');
-      messagesContainer.innerHTML = '';
+      if (!supabaseClient) return;
       
-      data.forEach(msg => appendMessage(msg));
-      scrollToBottom();
+      try {
+        const { data, error } = await supabaseClient
+          .from('messages')
+          .select('*')
+          .order('created_at', { ascending: true })
+          .limit(50);
+
+        if (error) throw error;
+
+        const messagesContainer = document.getElementById('chat-messages');
+        messagesContainer.innerHTML = '';
+        
+        data.forEach(msg => appendMessage(msg));
+        scrollToBottom();
+      } catch (err) {
+        alert('Gagal memuat pesan: ' + err.message + '\n\nPastikan tabel "messages" sudah dibuat di Supabase.');
+      }
     }
 
     // Fungsi Kirim Pesan
@@ -188,30 +282,31 @@
       const input = document.getElementById('chat-input');
       const text = input.value.trim();
 
-      if (!text || !currentUser) return;
+      if (!text || !currentUser || !supabaseClient) return;
 
       input.value = ''; // Reset input
 
-      const { error } = await supabaseClient
-        .from('messages')
-        .insert([{ username: currentUser, content: text }]);
+      try {
+        const { error } = await supabaseClient
+          .from('messages')
+          .insert([{ username: currentUser, content: text }]);
 
-      if (error) {
-        alert('Gagal mengirim pesan: ' + error.message);
+        if (error) throw error;
+      } catch (err) {
+        alert('Gagal mengirim pesan: ' + err.message);
       }
     }
 
-    // Fungsi Tampilkan Pesan ke Layar
+    // Fungsi Tampilkan Pesan
     function appendMessage(msg) {
       const messagesContainer = document.getElementById('chat-messages');
       const div = document.createElement('div');
       
-      // Cek apakah pesan ini milik kita sendiri
       div.className = `message-box ${msg.username === currentUser ? 'mine' : ''}`;
       
-      // Sanitasi teks agar tidak bisa disisipi script (XSS)
-      const safeName = msg.username.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-      const safeContent = msg.content.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      // Sanitasi teks agar aman dari XSS
+      const safeName = String(msg.username).replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      const safeContent = String(msg.content).replace(/</g, "&lt;").replace(/>/g, "&gt;");
       
       div.innerHTML = `
         <div class="msg-name">${safeName}</div>
@@ -222,8 +317,10 @@
       scrollToBottom();
     }
 
-    // Realtime Listener (Mendengarkan Pesan Baru dari Orang Lain)
+    // Realtime Listener
     function subscribeToChat() {
+      if (!supabaseClient) return;
+
       supabaseClient
         .channel('public:messages')
         .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, payload => {
@@ -232,13 +329,11 @@
         .subscribe();
     }
 
-    // Helper untuk scroll ke bawah
     function scrollToBottom() {
       const messagesContainer = document.getElementById('chat-messages');
       messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
-    // Kirim pesan via Enter
     function handleKeyPress(e) {
       if (e.key === 'Enter') sendMessage();
     }
