@@ -22,130 +22,70 @@
     }
 
     .chat-container { 
-      display: flex; 
-      flex-direction: column; 
-      height: 100%; 
-      max-width: 800px; 
-      margin: 0 auto; 
-      width: 100%; 
-      padding: 10px; 
+      display: flex; flex-direction: column; height: 100%; 
+      max-width: 800px; margin: 0 auto; width: 100%; padding: 10px; 
     }
 
     /* Navbar Kecil Warna Kuning */
     .chat-nav {
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center;
-      background: #ffe600; 
-      border: 3px solid #000; 
-      border-radius: 10px;
-      padding: 8px 12px; 
-      box-shadow: 4px 4px 0px #000; 
-      margin-bottom: 10px; 
-      z-index: 10;
+      display: flex; justify-content: space-between; align-items: center;
+      background: #ffe600; border: 3px solid #000; border-radius: 10px;
+      padding: 8px 12px; box-shadow: 4px 4px 0px #000; margin-bottom: 10px; z-index: 10;
     }
     
     .back-btn {
-      background: #ff7b9c; 
-      border: 2px solid #000; 
-      padding: 6px 10px; 
-      border-radius: 6px;
-      font-weight: 800; 
-      font-size: 12px; 
-      text-decoration: none; 
-      color: #000; 
-      box-shadow: 2px 2px 0px #000; 
-      transition: all 0.1s ease;
-      display: flex; 
-      align-items: center; 
+      background: #ff7b9c; border: 2px solid #000; padding: 6px 10px; border-radius: 6px;
+      font-weight: 800; font-size: 12px; text-decoration: none; color: #000; 
+      box-shadow: 2px 2px 0px #000; transition: all 0.1s ease;
+      display: flex; align-items: center; 
     }
     .back-btn:active { transform: translate(2px, 2px); box-shadow: 0px 0px 0px #000; }
     
-    .chat-title {
-      font-size: 16px; 
-      font-weight: 800; 
-      text-transform: uppercase;
-      margin-left: 10px; 
-    }
+    .chat-title { font-size: 16px; font-weight: 800; text-transform: uppercase; margin-left: 10px; }
 
     /* Area Chat */
     #chat-area { display: none; flex-direction: column; flex: 1; overflow: hidden; }
     
     .chat-messages {
-      flex: 1; 
-      overflow-y: auto; 
-      padding: 10px; 
-      background: #fff;
-      border: 3px solid #000; 
-      border-radius: 12px; 
-      box-shadow: 4px 4px 0px #000;
-      margin-bottom: 10px; 
-      display: flex; 
-      flex-direction: column; 
-      gap: 10px;
+      flex: 1; overflow-y: auto; padding: 10px; background: #fff;
+      border: 3px solid #000; border-radius: 12px; box-shadow: 4px 4px 0px #000;
+      margin-bottom: 10px; display: flex; flex-direction: column; gap: 10px;
       scroll-behavior: smooth;
     }
     
     /* Bubble Chat */
     .message-box {
-      background: #f4f4f0; 
-      padding: 10px 14px; 
-      border: 2px solid #000; 
-      border-radius: 10px;
-      max-width: 85%; 
-      align-self: flex-start; 
-      box-shadow: 2px 2px 0px #000;
-      word-wrap: break-word;
-      animation: popIn 0.2s ease-out;
+      background: #f4f4f0; padding: 10px 14px; border: 2px solid #000; border-radius: 10px;
+      max-width: 85%; align-self: flex-start; box-shadow: 2px 2px 0px #000;
+      word-wrap: break-word; animation: popIn 0.2s ease-out;
     }
     .message-box.mine { background: #00e5ff; align-self: flex-end; }
-    
-    /* Warna khusus untuk AI */
-    .message-box.ai { 
-      background: #a78bfa; /* Warna ungu untuk AI */
-      align-self: flex-start;
-    }
+    .message-box.ai { background: #a78bfa; align-self: flex-start; } /* Warna AI */
     
     .msg-name { font-weight: 800; font-size: 12px; margin-bottom: 4px; color: #333; text-transform: uppercase; }
     .msg-text { font-weight: 600; font-size: 15px; line-height: 1.4; }
 
+    /* Indikator AI Mengetik */
+    .typing-indicator {
+      display: flex; gap: 4px; padding: 5px 10px; font-weight: 800; font-size: 18px; letter-spacing: 2px;
+    }
+    .typing-indicator span { animation: bounce 1.4s infinite ease-in-out both; }
+    .typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
+    .typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+    @keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+
     /* Media */
-    .msg-media {
-      margin-top: 8px;
-      max-width: 100%;
-      border-radius: 6px;
-      border: 2px solid #000;
-      display: block;
-    }
+    .msg-media { margin-top: 8px; max-width: 100%; border-radius: 6px; border: 2px solid #000; display: block; }
 
-    /* Area Input (Dinaikkan sedikit) */
-    .chat-input-wrapper {
-      padding-bottom: 15px; /* Dinaikkan dari dasar layar */
-      padding-bottom: calc(15px + env(safe-area-inset-bottom)); /* Aman untuk iPhone */
-    }
-
-    .chat-input-area { 
-      display: flex; 
-      gap: 8px; 
-      align-items: center;
-    }
+    /* Area Input */
+    .chat-input-wrapper { padding-bottom: 15px; padding-bottom: calc(15px + env(safe-area-inset-bottom)); }
+    .chat-input-area { display: flex; gap: 8px; align-items: center; }
     
-    /* Tombol File */
     .file-label {
-      background: #a78bfa; 
-      border: 3px solid #000;
-      border-radius: 10px;
-      width: 45px;
-      height: 45px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 20px;
-      cursor: pointer;
-      box-shadow: 3px 3px 0px #000;
-      flex-shrink: 0;
+      background: #a78bfa; border: 3px solid #000; border-radius: 10px;
+      width: 45px; height: 45px; display: flex; justify-content: center; align-items: center;
+      font-size: 20px; cursor: pointer; box-shadow: 3px 3px 0px #000; flex-shrink: 0;
     }
-    .file-label:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0px #000; }
     input[type="file"] { display: none; }
 
     .chat-input-area input[type="text"] {
@@ -154,29 +94,14 @@
       box-shadow: 3px 3px 0px #000; height: 45px;
     }
     
-    /* Tombol Kirim (Ikon Pesawat) */
     .btn-send {
-      background: #ff7b9c; border: 3px solid #000;
-      border-radius: 10px; cursor: pointer; 
-      box-shadow: 3px 3px 0px #000; 
-      transition: all 0.1s ease;
-      height: 45px;
-      width: 45px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-shrink: 0;
-      padding: 0;
+      background: #ff7b9c; border: 3px solid #000; border-radius: 10px; cursor: pointer; 
+      box-shadow: 3px 3px 0px #000; transition: all 0.1s ease;
+      height: 45px; width: 45px; display: flex; justify-content: center; align-items: center; flex-shrink: 0;
     }
-    .btn-send:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0px #000; }
-    
-    /* SVG Icon Pesawat */
     .btn-send svg { width: 22px; height: 22px; fill: #000; }
 
-    @keyframes popIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
+    @keyframes popIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 
     /* Login Box */
     #login-box {
@@ -187,16 +112,13 @@
     #login-box h3 { font-size: 24px; font-weight: 800; margin-bottom: 10px; text-transform: uppercase; }
     #login-box input {
       width: 100%; padding: 15px; border: 3px solid #000; border-radius: 10px;
-      font-family: inherit; font-weight: 700; font-size: 16px; margin-bottom: 15px; 
-      outline: none; box-shadow: 3px 3px 0px #000;
+      font-family: inherit; font-weight: 700; font-size: 16px; margin-bottom: 15px; outline: none;
     }
     #login-box button {
       width: 100%; padding: 15px; background: #00e5ff; border: 3px solid #000;
       border-radius: 10px; font-family: inherit; font-weight: 800; font-size: 16px;
       cursor: pointer; box-shadow: 4px 4px 0px #000; text-transform: uppercase;
-      transition: all 0.2s ease;
     }
-    #login-box button:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #000; }
   </style>
 </head>
 <body>
@@ -207,28 +129,23 @@
       <div class="chat-title">GLOBAL CHAT</div>
     </div>
 
-    <!-- Form Login -->
     <div id="login-box" style="display: none;">
       <h3>Masuk Chat</h3>
       <input type="text" id="username-input" placeholder="@UsernameKamu" maxlength="20" />
       <button id="btn-masuk">Masuk Chat</button>
     </div>
 
-    <!-- Ruang Chat -->
     <div id="chat-area">
       <div class="chat-messages" id="chat-messages"></div>
       
-      <!-- Wrapper Input dengan Padding Bawah -->
       <div class="chat-input-wrapper">
         <div class="chat-input-area">
-          <!-- Tombol File -->
           <label for="file-upload" class="file-label">📎</label>
           <input type="file" id="file-upload" accept="image/*,video/*" onchange="uploadFile(this)" />
 
-          <!-- Input Teks -->
-          <input type="text" id="chat-input" placeholder="Ketik @ai untuk bertanya..." autocomplete="off" onkeypress="handleKeyPress(event)" />
+          <!-- Placeholder diubah untuk mengingatkan user -->
+          <input type="text" id="chat-input" placeholder="Ketik pesan atau '@ai [tanya]'..." autocomplete="off" onkeypress="handleKeyPress(event)" />
           
-          <!-- Tombol Kirim Ikon Pesawat -->
           <button class="btn-send" onclick="sendMessage()" title="Kirim">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
@@ -242,21 +159,20 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     // ====================================================
-    // KONFIGURASI SUPABASE
+    // 1. KONFIGURASI SUPABASE
     // ====================================================
     const SUPABASE_URL = 'https://mhijlcsxogfforriencs.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1oaWpsY3N4b2dmZm9ycmllbmNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM1MDA3MjAsImV4cCI6MjEwOTA3NjcyMH0.WRDyMXiKEXaJs652tXvb3T21YfDL7tN4tRUQej6sSCk';
     
     // ====================================================
-    // KONFIGURASI MISTRAL AI (GANTI API KEY DI BAWAH)
+    // 2. KONFIGURASI MISTRAL AI (GANTI API KEY DI BAWAH)
     // ====================================================
-    const MISTRAL_API_KEY = 'mstrl_GRASB3k537Bggp3qIje7LC2NxzKrjtM8_18XxUQ';
+    const MISTRAL_API_KEY = 'mstrl_GRASB3k537Bggp3qIje7LC2NxzKrjtM8_18XxUQ'; 
     const MISTRAL_API_URL = 'https://api.mistral.ai/v1/chat/completions';
-    const MISTRAL_MODEL = 'mistral-tiny'; // Model gratis/cepat
 
     let supabaseClient = null;
     let currentUser = null;
-    let isAiResponding = false; // Mencegah AI balas beruntun
+    let isAiResponding = false;
 
     document.addEventListener("DOMContentLoaded", () => {
       if (typeof window.supabase === 'undefined') {
@@ -302,7 +218,7 @@
     }
 
     // ==========================================
-    // FUNGSI KIRIM PESAN & PANGGIL AI
+    // FUNGSI KIRIM PESAN & CEK TAG @ai
     // ==========================================
     async function sendMessage() {
       const input = document.getElementById('chat-input');
@@ -311,15 +227,23 @@
 
       input.value = ''; 
       
-      // 1. Kirim pesan user ke database
+      // Kirim pesan user ke database
       await supabaseClient.from('messages').insert([{ username: currentUser, content: text }]);
 
-      // 2. Cek apakah pesan memanggil AI (@ai atau @rizdev ai)
+      // Cek apakah pesan mengandung tag @ai (contoh: "@ai 1+1" atau "halo @ai")
       const lowerText = text.toLowerCase();
-      if (lowerText.startsWith('@ai ') || lowerText.startsWith('@rizdev ai ')) {
-        // Ambil prompt (hapus tag @ai di depan)
-        const prompt = text.replace(/@ai /i, '').replace(/@rizdev ai /i, '');
-        askMistralAI(prompt);
+      if (lowerText.includes('@ai')) {
+        // Ambil prompt dengan menghapus tag @ai
+        const prompt = text.replace(/@ai/gi, '').trim();
+        if (prompt.length > 0) {
+          askMistralAI(prompt);
+        } else {
+          // Jika hanya ketik "@ai" tanpa pertanyaan
+          await supabaseClient.from('messages').insert([{ 
+            username: 'Rizdev AI', 
+            content: 'Halo! Ada yang bisa saya bantu? Silakan ketik pertanyaan Anda setelah tag @ai. Contoh: @ai jelaskan apa itu hacking' 
+          }]);
+        }
       }
     }
 
@@ -330,19 +254,32 @@
       if (isAiResponding) return;
       isAiResponding = true;
 
-      // Cek apakah API Key sudah diisi
-      if (MISTRAL_API_KEY === 'mstrl_GRASB3k537Bggp3qIje7LC2NxzKrjtM8_18XxUQ') {
+      // Tampilkan indikator mengetik di UI sementara
+      const container = document.getElementById('chat-messages');
+      const loadingId = 'ai-loading-' + Date.now();
+      const loadingDiv = document.createElement('div');
+      loadingDiv.id = loadingId;
+      loadingDiv.className = 'message-box ai';
+      loadingDiv.innerHTML = `
+        <div class="msg-name">Rizdev AI</div>
+        <div class="typing-indicator"><span>.</span><span>.</span><span>.</span></div>
+      `;
+      container.appendChild(loadingDiv);
+      scrollToBottom();
+
+      // Cek API Key
+      if (MISTRAL_API_KEY === 'mstrl_GRASB3k537Bggp3qIje7LC2NxzKrjtM8_18XxUQ' || !MISTRAL_API_KEY) {
+        document.getElementById(loadingId).remove();
         await supabaseClient.from('messages').insert([{ 
           username: 'Rizdev AI', 
-          content: '⚠️ Maaf, API Key Mistral belum diatur oleh Admin.' 
+          content: '⚠️ Maaf, API Key Mistral belum diatur oleh Admin. Silakan buka file chat.html dan isi API Key.' 
         }]);
         isAiResponding = false;
         return;
       }
 
-      // Tampilkan pesan "sedang mengetik" (opsional, tapi kita langsung kirim aja biar simple)
-      
       try {
+        // Tembak API Mistral
         const response = await fetch(MISTRAL_API_URL, {
           method: 'POST',
           headers: {
@@ -350,7 +287,7 @@
             'Authorization': `Bearer ${MISTRAL_API_KEY}`
           },
           body: JSON.stringify({
-            model: MISTRAL_MODEL,
+            model: 'mistral-tiny', // Model tercepat & gratis
             messages: [
               { 
                 role: 'system', 
@@ -363,7 +300,13 @@
           })
         });
 
-        if (!response.ok) throw new Error('Gagal menghubungi server AI');
+        // Hapus indikator loading
+        document.getElementById(loadingId).remove();
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || 'Gagal menghubungi server AI');
+        }
 
         const data = await response.json();
         const aiReply = data.choices[0].message.content;
@@ -375,10 +318,14 @@
         }]);
 
       } catch (error) {
-        // Kirim pesan error ke chat jika gagal
+        // Hapus indikator loading jika error
+        const loadingEl = document.getElementById(loadingId);
+        if (loadingEl) loadingEl.remove();
+
+        // Kirim pesan error ke chat
         await supabaseClient.from('messages').insert([{ 
           username: 'Rizdev AI', 
-          content: ` Error: ${error.message}` 
+          content: `❌ Error: ${error.message}` 
         }]);
       } finally {
         isAiResponding = false;
@@ -430,9 +377,12 @@
     // ==========================================
     function appendMessage(msg) {
       const container = document.getElementById('chat-messages');
+      
+      // Jangan tampilkan pesan kosong
+      if (!msg.content) return;
+
       const div = document.createElement('div');
       
-      // Tentukan kelas berdasarkan pengirim
       let className = 'message-box';
       if (msg.username === currentUser) className += ' mine';
       else if (msg.username === 'Rizdev AI') className += ' ai';
@@ -466,6 +416,11 @@
       if (!supabaseClient) return;
       supabaseClient.channel('public:messages')
         .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, payload => {
+          // Jika pesan yang masuk adalah dari AI atau user lain, hapus indikator loading
+          if (payload.new.username === 'Rizdev AI') {
+             const loaders = document.querySelectorAll('.message-box.ai .typing-indicator');
+             loaders.forEach(l => l.parentElement.remove());
+          }
           appendMessage(payload.new);
         }).subscribe();
     }
