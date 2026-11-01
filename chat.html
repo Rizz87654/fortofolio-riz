@@ -163,18 +163,13 @@
     const SUPABASE_URL = 'https://mhijlcsxogfforriencs.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1oaWpsY3N4b2dmZm9ycmllbmNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM1MDA3MjAsImV4cCI6MjEwOTA3NjcyMH0.WRDyMXiKEXaJs652tXvb3T21YfDL7tN4tRUQej6sSCk';
     
-    // ====================================================
-    // 2. KONFIGURASI AI SANSEKAI (TANPA API KEY)
-    // ====================================================
-    const SANSEKAI_API_URL = 'https://api.sansekai.my.id/api/ai/chatgpt';
-
     let supabaseClient = null;
     let currentUser = null;
     let isAiResponding = false;
 
     document.addEventListener("DOMContentLoaded", () => {
       if (typeof window.supabase === 'undefined') {
-        alert('Error: Library Supabase gagal dimuat.');
+        alert('Error: Library Supabase gagal dimuat. Periksa koneksi internet Anda.');
         return;
       }
       supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -207,7 +202,7 @@
       if (!supabaseClient) return;
       const { data, error } = await supabaseClient.from('messages').select('*').order('created_at', { ascending: true }).limit(100);
       
-      if (error) return alert('Gagal memuat pesan.');
+      if (error) return alert('Gagal memuat pesan. Pastikan tabel Supabase sudah dibuat.');
       
       const container = document.getElementById('chat-messages');
       container.innerHTML = '';
@@ -216,7 +211,7 @@
     }
 
     // ==========================================
-    // FUNGSI KIRIM PESAN & CEK TAG @ai
+    // FUNGSI KIRIM PESAN & DETEKSI AI
     // ==========================================
     async function sendMessage() {
       const input = document.getElementById('chat-input');
@@ -225,16 +220,17 @@
 
       input.value = ''; 
       
-      // Kirim pesan user ke database
+      // 1. Kirim pesan user ke database
       await supabaseClient.from('messages').insert([{ username: currentUser, content: text }]);
 
-      // Cek apakah pesan mengandung tag @ai
+      // 2. Cek apakah memanggil AI (@ai)
       const lowerText = text.toLowerCase();
       if (lowerText.includes('@ai')) {
         const prompt = text.replace(/@ai/gi, '').trim();
         if (prompt.length > 0) {
           askSansekaiAI(prompt);
         } else {
+          // Jika hanya ketik @ai tanpa teks
           await supabaseClient.from('messages').insert([{ 
             username: 'Rizdev AI', 
             content: 'Halo! Ada yang bisa saya bantu? Silakan ketik pertanyaan Anda setelah tag @ai. Contoh: @ai jelaskan apa itu hacking' 
@@ -244,13 +240,13 @@
     }
 
     // ==========================================
-    // FUNGSI AI SANSEKAI (TANPA API KEY)
+    // FUNGSI AI SANSEKAI (CHATGPT)
     // ==========================================
     async function askSansekaiAI(prompt) {
       if (isAiResponding) return;
       isAiResponding = true;
 
-      // Tampilkan indikator mengetik di UI sementara
+      // Tampilkan indikator mengetik di UI
       const container = document.getElementById('chat-messages');
       const loadingId = 'ai-loading-' + Date.now();
       const loadingDiv = document.createElement('div');
@@ -264,8 +260,10 @@
       scrollToBottom();
 
       try {
-        // Tembak API Sansekai
-        const response = await fetch(`${SANSEKAI_API_URL}?text=${encodeURIComponent(prompt)}`, {
+        // URL Endpoint Sansekai
+        const apiUrl = `https://api.sansekai.my.id/api/ai/chatgpt?prompt=${encodeURIComponent(prompt)}`;
+
+        const response = await fetch(apiUrl, {
           method: 'GET',
           headers: {
             'Accept': 'application/json'
@@ -276,10 +274,10 @@
 
         const data = await response.json();
         
-        // Cek berbagai kemungkinan format respons dari Sansekai
+        // Cek struktur JSON dari Sansekai (result / message / response)
         let aiReply = data.result || data.message || data.response || data.data;
         
-        // Jika masih berupa objek, ubah ke string
+        // Jika balasan berupa objek (kadang API mengembalikan JSON di dalam string)
         if (typeof aiReply === 'object') {
           aiReply = JSON.stringify(aiReply);
         }
@@ -300,7 +298,7 @@
         const loadingEl = document.getElementById(loadingId);
         if (loadingEl) loadingEl.remove();
 
-        // Kirim pesan error ke chat
+        // Kirim pesan error ke database chat
         await supabaseClient.from('messages').insert([{ 
           username: 'Rizdev AI', 
           content: `❌ Error: ${error.message}` 
@@ -311,7 +309,7 @@
     }
 
     // ==========================================
-    // FUNGSI UPLOAD FILE
+    // FUNGSI UPLOAD FILE (FOTO & VIDEO)
     // ==========================================
     async function uploadFile(input) {
       const file = input.files[0];
@@ -351,11 +349,10 @@
     }
 
     // ==========================================
-    // TAMPILKAN PESAN
+    // TAMPILKAN PESAN KE LAYAR
     // ==========================================
     function appendMessage(msg) {
       const container = document.getElementById('chat-messages');
-      
       if (!msg.content) return;
 
       const div = document.createElement('div');
@@ -393,6 +390,7 @@
       if (!supabaseClient) return;
       supabaseClient.channel('public:messages')
         .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, payload => {
+          // Hapus indikator loading jika pesan yang masuk adalah balasan AI
           if (payload.new.username === 'Rizdev AI') {
              const loaders = document.querySelectorAll('.message-box.ai .typing-indicator');
              loaders.forEach(l => l.parentElement.remove());
