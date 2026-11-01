@@ -15,7 +15,7 @@
       background-size: 25px 25px;
       color: #000; 
       height: 100vh; 
-      height: 100dvh; /* Agar pas di layar HP modern */
+      height: 100dvh; /* Fullscreen di HP */
       display: flex; 
       flex-direction: column;
       overflow: hidden;
@@ -28,80 +28,47 @@
       max-width: 800px; 
       margin: 0 auto; 
       width: 100%; 
-      padding: 10px; /* Padding lebih kecil di HP */
+      padding: 10px; 
     }
 
-    /* Navbar Chat (Kiri Atas) */
+    /* Navbar Kecil Warna Kuning */
     .chat-nav {
       display: flex; 
       justify-content: space-between; 
       align-items: center;
-      background: #00e5ff; 
+      background: #ffe600; /* Warna Kuning */
       border: 3px solid #000; 
-      border-radius: 12px;
-      padding: 12px 15px; 
+      border-radius: 10px;
+      padding: 8px 12px; /* Lebih kecil */
       box-shadow: 4px 4px 0px #000; 
       margin-bottom: 10px; 
       z-index: 10;
-      position: relative;
     }
+    
     .back-btn {
       background: #ff7b9c; 
-      border: 3px solid #000; 
-      padding: 8px 12px; 
-      border-radius: 8px;
+      border: 2px solid #000; 
+      padding: 6px 10px; 
+      border-radius: 6px;
       font-weight: 800; 
-      font-size: 13px; 
+      font-size: 12px; 
       text-decoration: none; 
       color: #000; 
-      box-shadow: 3px 3px 0px #000; 
-      transition: all 0.2s ease;
+      box-shadow: 2px 2px 0px #000; 
+      transition: all 0.1s ease;
       display: flex; 
       align-items: center; 
-      gap: 5px;
     }
-    .back-btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0px #000; }
+    .back-btn:active { transform: translate(2px, 2px); box-shadow: 0px 0px 0px #000; }
     
     .chat-title {
-      font-size: 18px; 
+      font-size: 16px; 
       font-weight: 800; 
       text-transform: uppercase;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      pointer-events: none; /* Agar tidak menghalangi klik */
+      margin-left: 10px; /* Geser sedikit ke kanan */
     }
 
-    /* Pesan Error di Layar */
-    #error-message {
-      display: none;
-      background: #ff6b6b; border: 3px solid #000; padding: 12px;
-      border-radius: 10px; box-shadow: 4px 4px 0px #000;
-      font-weight: 800; text-align: center; margin-bottom: 10px; font-size: 14px;
-    }
-
-    /* Login Box (Hanya muncul jika belum ada username) */
-    #login-box {
-      background: #fff; border: 4px solid #000; border-radius: 20px;
-      padding: 25px; box-shadow: 8px 8px 0px #000; text-align: center;
-      margin: auto; max-width: 400px; width: 100%;
-    }
-    #login-box h3 { font-size: 24px; font-weight: 800; margin-bottom: 10px; text-transform: uppercase; }
-    #login-box p { font-size: 14px; font-weight: 600; margin-bottom: 20px; line-height: 1.5; }
-    #login-box input {
-      width: 100%; padding: 15px; border: 3px solid #000; border-radius: 10px;
-      font-family: inherit; font-weight: 700; font-size: 16px; margin-bottom: 15px; 
-      outline: none; box-shadow: 3px 3px 0px #000;
-    }
-    #login-box button {
-      width: 100%; padding: 15px; background: #ffe600; border: 3px solid #000;
-      border-radius: 10px; font-family: inherit; font-weight: 800; font-size: 16px;
-      cursor: pointer; box-shadow: 4px 4px 0px #000; text-transform: uppercase;
-      transition: all 0.2s ease;
-    }
-    #login-box button:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #000; }
-
-    /* Area Chat */
+    /* Area Chat Full Screen */
     #chat-area { display: none; flex-direction: column; flex: 1; overflow: hidden; }
     
     .chat-messages {
@@ -119,81 +86,113 @@
       scroll-behavior: smooth;
     }
     
+    /* Bubble Chat */
     .message-box {
       background: #f4f4f0; 
       padding: 10px 14px; 
       border: 2px solid #000; 
-      border-radius: 8px;
+      border-radius: 10px;
       max-width: 85%; 
       align-self: flex-start; 
       box-shadow: 2px 2px 0px #000;
       word-wrap: break-word;
       animation: popIn 0.2s ease-out;
     }
-    /* Pesan Sendiri (Kanan & Cyan) */
     .message-box.mine { 
       background: #00e5ff; 
       align-self: flex-end; 
     }
     .msg-name { font-weight: 800; font-size: 12px; margin-bottom: 4px; color: #333; text-transform: uppercase; }
-    .msg-text { font-weight: 600; font-size: 14px; line-height: 1.4; }
+    .msg-text { font-weight: 600; font-size: 15px; line-height: 1.4; }
+
+    /* Media (Foto/Video) di dalam Chat */
+    .msg-media {
+      margin-top: 8px;
+      max-width: 100%;
+      border-radius: 6px;
+      border: 2px solid #000;
+      display: block;
+    }
+
+    /* Input Area (Teks + File) */
+    .chat-input-area { 
+      display: flex; 
+      gap: 8px; 
+      padding-bottom: env(safe-area-inset-bottom); 
+      align-items: center;
+    }
+    
+    /* Tombol File (Klip) */
+    .file-label {
+      background: #a78bfa; /* Warna ungu */
+      border: 3px solid #000;
+      border-radius: 10px;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 3px 3px 0px #000;
+      flex-shrink: 0;
+    }
+    .file-label:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0px #000; }
+    input[type="file"] { display: none; } /* Sembunyikan input asli */
+
+    .chat-input-area input[type="text"] {
+      flex: 1; padding: 12px 15px; border: 3px solid #000; border-radius: 10px;
+      font-family: inherit; font-weight: 700; font-size: 15px; outline: none;
+      box-shadow: 3px 3px 0px #000; height: 48px;
+    }
+    
+    .chat-input-area button {
+      padding: 0 18px; background: #ff7b9c; border: 3px solid #000;
+      border-radius: 10px; font-weight: 800; cursor: pointer; 
+      box-shadow: 3px 3px 0px #000; font-family: inherit; font-size: 15px;
+      transition: all 0.1s ease;
+      height: 48px;
+      flex-shrink: 0;
+    }
+    .chat-input-area button:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0px #000; }
 
     @keyframes popIn {
       from { opacity: 0; transform: scale(0.95); }
       to { opacity: 1; transform: scale(1); }
     }
 
-    /* Input Chat */
-    .chat-input-area { 
-      display: flex; 
-      gap: 8px; 
-      padding-bottom: env(safe-area-inset-bottom); /* Untuk iPhone poni */
+    /* Login Box */
+    #login-box {
+      background: #fff; border: 4px solid #000; border-radius: 20px;
+      padding: 25px; box-shadow: 8px 8px 0px #000; text-align: center;
+      margin: auto; max-width: 400px; width: 100%;
     }
-    .chat-input-area input {
-      flex: 1; padding: 12px 15px; border: 3px solid #000; border-radius: 10px;
-      font-family: inherit; font-weight: 700; font-size: 14px; outline: none;
-      box-shadow: 3px 3px 0px #000;
+    #login-box h3 { font-size: 24px; font-weight: 800; margin-bottom: 10px; text-transform: uppercase; }
+    #login-box input {
+      width: 100%; padding: 15px; border: 3px solid #000; border-radius: 10px;
+      font-family: inherit; font-weight: 700; font-size: 16px; margin-bottom: 15px; 
+      outline: none; box-shadow: 3px 3px 0px #000;
     }
-    .chat-input-area button {
-      padding: 0 20px; background: #ff7b9c; border: 3px solid #000;
-      border-radius: 10px; font-weight: 800; cursor: pointer; 
-      box-shadow: 3px 3px 0px #000; font-family: inherit; font-size: 15px;
-      transition: all 0.1s ease;
+    #login-box button {
+      width: 100%; padding: 15px; background: #00e5ff; border: 3px solid #000;
+      border-radius: 10px; font-family: inherit; font-weight: 800; font-size: 16px;
+      cursor: pointer; box-shadow: 4px 4px 0px #000; text-transform: uppercase;
+      transition: all 0.2s ease;
     }
-    .chat-input-area button:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0px #000; }
-
-    /* Responsif untuk Desktop */
-    @media (min-width: 768px) {
-      .chat-container { padding: 20px; }
-      .chat-nav { padding: 15px 20px; }
-      .chat-title { font-size: 22px; }
-      .chat-messages { padding: 15px; gap: 12px; }
-      .message-box { padding: 12px 18px; font-size: 15px; }
-      .msg-name { font-size: 13px; }
-      .msg-text { font-size: 15px; }
-      .chat-input-area input { padding: 15px; font-size: 16px; }
-      .chat-input-area button { padding: 0 25px; font-size: 16px; }
-    }
+    #login-box button:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #000; }
   </style>
 </head>
 <body>
 
   <div class="chat-container">
     <div class="chat-nav">
-      <!-- Tombol Kembali di Kiri Atas -->
       <a href="index.html" class="back-btn">&larr; Portofolio</a>
-      <!-- Judul di Tengah -->
       <div class="chat-title">GLOBAL CHAT</div>
-      <!-- Spacer agar judul tetap di tengah -->
-      <div style="width: 80px;"></div> 
     </div>
 
-    <div id="error-message"></div>
-
-    <!-- Form Login (Hanya muncul jika belum ada username di localStorage) -->
+    <!-- Form Login -->
     <div id="login-box" style="display: none;">
       <h3>Masuk Chat</h3>
-      <p>Masukkan username Anda untuk bergabung ke ruang global chat.</p>
       <input type="text" id="username-input" placeholder="@UsernameKamu" maxlength="20" />
       <button id="btn-masuk">Masuk Chat</button>
     </div>
@@ -201,65 +200,43 @@
     <!-- Ruang Chat -->
     <div id="chat-area">
       <div class="chat-messages" id="chat-messages"></div>
+      
       <div class="chat-input-area">
+        <!-- Tombol Upload File (Tersembunyi) -->
+        <label for="file-upload" class="file-label">📎</label>
+        <input type="file" id="file-upload" accept="image/*,video/*" onchange="uploadFile(this)" />
+
         <input type="text" id="chat-input" placeholder="Ketik pesan..." autocomplete="off" onkeypress="handleKeyPress(event)" />
         <button onclick="sendMessage()">Kirim</button>
       </div>
     </div>
   </div>
 
-  <!-- Script Supabase Versi 2 -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
-    // ====================================================
-    // URL DAN KEY SUPABASE (SUDAH TERISI)
-    // ====================================================
     const SUPABASE_URL = 'https://mhijlcsxogfforriencs.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1oaWpsY3N4b2dmZm9ycmllbmNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM1MDA3MjAsImV4cCI6MjEwOTA3NjcyMH0.WRDyMXiKEXaJs652tXvb3T21YfDL7tN4tRUQej6sSCk';
     
     let supabaseClient = null;
     let currentUser = null;
 
-    // Fungsi untuk menampilkan error di layar
-    function showError(msg) {
-      const errDiv = document.getElementById('error-message');
-      errDiv.textContent = msg;
-      errDiv.style.display = 'block';
-    }
-
-    // Cek ketersediaan library Supabase saat halaman dimuat
     document.addEventListener("DOMContentLoaded", () => {
       if (typeof window.supabase === 'undefined') {
-        showError('Error: Library Supabase gagal dimuat. Pastikan internet lancar.');
+        alert('Error: Library Supabase gagal dimuat.');
         return;
       }
+      supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-      try {
-        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-      } catch (e) {
-        showError('Error inisialisasi: ' + e.message);
-        return;
-      }
-
-      // Cek apakah ada username yang tersimpan di browser (localStorage)
       const savedUser = localStorage.getItem('rizdev_chat_username');
-      
       if (savedUser) {
-        // Jika ada, langsung masuk tanpa bertanya
         currentUser = savedUser;
         startChat();
       } else {
-        // Jika tidak ada, tampilkan form login
         document.getElementById('login-box').style.display = 'block';
         document.getElementById('btn-masuk').addEventListener('click', () => {
           const username = document.getElementById('username-input').value.trim();
+          if (username.length < 3) return alert('Username minimal 3 karakter!');
           
-          if (username.length < 3) {
-            alert('Username minimal 3 karakter!');
-            return;
-          }
-
-          // Simpan username ke browser
           localStorage.setItem('rizdev_chat_username', username);
           currentUser = username;
           startChat();
@@ -267,93 +244,132 @@
       }
     });
 
-    // Fungsi untuk memulai chat (dipanggil saat login atau otomatis)
     function startChat() {
       document.getElementById('login-box').style.display = 'none';
       document.getElementById('chat-area').style.display = 'flex';
-      
       loadMessages();
       subscribeToChat();
     }
 
-    // Fungsi Ambil Pesan Lama
     async function loadMessages() {
       if (!supabaseClient) return;
+      const { data, error } = await supabaseClient.from('messages').select('*').order('created_at', { ascending: true }).limit(100);
       
-      const { data, error } = await supabaseClient
-        .from('messages')
-        .select('*')
-        .order('created_at', { ascending: true })
-        .limit(100); // Ambil 100 pesan terakhir
-
-      if (error) {
-        showError('Gagal memuat pesan: ' + error.message + '. Pastikan tabel sudah dibuat.');
-        return;
-      }
-
-      const messagesContainer = document.getElementById('chat-messages');
-      messagesContainer.innerHTML = '';
+      if (error) return alert('Gagal memuat pesan.');
+      
+      const container = document.getElementById('chat-messages');
+      container.innerHTML = '';
       data.forEach(msg => appendMessage(msg));
       scrollToBottom();
     }
 
-    // Fungsi Kirim Pesan
+    // Fungsi Kirim Teks
     async function sendMessage() {
       const input = document.getElementById('chat-input');
       const text = input.value.trim();
+      if (!text || !currentUser) return;
 
-      if (!text || !currentUser || !supabaseClient) return;
+      input.value = ''; 
+      await supabaseClient.from('messages').insert([{ username: currentUser, content: text }]);
+    }
 
-      input.value = ''; // Reset input
+    // ==========================================
+    // FUNGSI UPLOAD FILE (FOTO & VIDEO)
+    // ==========================================
+    async function uploadFile(input) {
+      const file = input.files[0];
+      if (!file) return;
 
-      const { error } = await supabaseClient
-        .from('messages')
-        .insert([{ username: currentUser, content: text }]);
+      // Batas ukuran file (maksimal 10MB agar tidak berat)
+      if (file.size > 10 * 1024 * 1024) {
+        alert('Ukuran file terlalu besar! Maksimal 10MB.');
+        input.value = '';
+        return;
+      }
 
-      if (error) {
-        showError('Gagal mengirim pesan: ' + error.message);
+      const btnLabel = document.querySelector('.file-label');
+      const originalText = btnLabel.innerHTML;
+      btnLabel.innerHTML = '⏳'; // Loading state
+      btnLabel.style.pointerEvents = 'none';
+
+      try {
+        // Buat nama file unik
+        const fileExt = file.name.split('.').pop();
+        const fileName = `${Date.now()}_${Math.random().toString(36).substring(7)}.${fileExt}`;
+
+        // 1. Upload ke Supabase Storage (Bucket: chat-files)
+        const { data, error } = await supabaseClient.storage
+          .from('chat-files')
+          .upload(fileName, file);
+
+        if (error) throw error;
+
+        // 2. Ambil URL Publik file tersebut
+        const { data: urlData } = supabaseClient.storage
+          .from('chat-files')
+          .getPublicUrl(fileName);
+
+        // 3. Kirim URL file ke database chat
+        const fileType = file.type.startsWith('video') ? 'video' : 'image';
+        const content = `[${fileType}]${urlData.publicUrl}`; // Format penanda
+
+        await supabaseClient.from('messages').insert([{ username: currentUser, content: content }]);
+
+      } catch (err) {
+        alert('Gagal mengunggah file: ' + err.message);
+      } finally {
+        btnLabel.innerHTML = originalText;
+        btnLabel.style.pointerEvents = 'auto';
+        input.value = ''; // Reset input
       }
     }
 
-    // Fungsi Tampilkan Pesan ke Layar (Kanan/Kiri)
+    // ==========================================
+    // TAMPILKAN PESAN (TEKS / FOTO / VIDEO)
+    // ==========================================
     function appendMessage(msg) {
-      const messagesContainer = document.getElementById('chat-messages');
+      const container = document.getElementById('chat-messages');
       const div = document.createElement('div');
-      
-      // Pesan masuk ke kanan jika username sama dengan currentUser
       div.className = `message-box ${msg.username === currentUser ? 'mine' : ''}`;
       
       const safeName = String(msg.username).replace(/</g, "&lt;").replace(/>/g, "&gt;");
-      const safeContent = String(msg.content).replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      let contentHtml = '';
+
+      // Cek apakah pesan berisi gambar atau video
+      if (msg.content.startsWith('[image]')) {
+        const url = msg.content.replace('[image]', '');
+        contentHtml = `<img src="${url}" class="msg-media" onclick="window.open('${url}', '_blank')" />`;
+      } else if (msg.content.startsWith('[video]')) {
+        const url = msg.content.replace('[video]', '');
+        contentHtml = `<video src="${url}" class="msg-media" controls></video>`;
+      } else {
+        // Teks biasa (Sanitasi XSS)
+        const safeContent = String(msg.content).replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        contentHtml = `<div class="msg-text">${safeContent}</div>`;
+      }
       
       div.innerHTML = `
         <div class="msg-name">${safeName}</div>
-        <div class="msg-text">${safeContent}</div>
+        ${contentHtml}
       `;
       
-      messagesContainer.appendChild(div);
+      container.appendChild(div);
       scrollToBottom();
     }
 
-    // Realtime Listener (Dengarkan pesan baru secara live)
     function subscribeToChat() {
       if (!supabaseClient) return;
-      
-      supabaseClient
-        .channel('public:messages')
+      supabaseClient.channel('public:messages')
         .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, payload => {
           appendMessage(payload.new);
-        })
-        .subscribe();
+        }).subscribe();
     }
 
-    // Helper scroll ke paling bawah
     function scrollToBottom() {
-      const messagesContainer = document.getElementById('chat-messages');
-      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      const container = document.getElementById('chat-messages');
+      container.scrollTop = container.scrollHeight;
     }
 
-    // Kirim pesan via Enter
     function handleKeyPress(e) {
       if (e.key === 'Enter') sendMessage();
     }
